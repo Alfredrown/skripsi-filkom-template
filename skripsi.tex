@@ -1,0 +1,311 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template Skripsi - Fakultas Ilmu Komputer Universitas Brawijaya
+% Berbasis Harvard Anglia referencing style
+%
+% Cara penggunaan:
+%   1. Isi data diri pada bagian "Fill your data here"
+%   2. Tulis konten bab pada file bab1.tex, bab2.tex, dst.
+%   3. Tambahkan referensi pada daftar-pustaka.bib
+%   4. Build dengan XeLaTeX (latexmk -xelatex)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{skripsi}
+
+% ------------------------------------------------------------
+% Add your own needed package here
+% ------------------------------------------------------------
+\usepackage[titles]{tocloft}
+\renewcommand\cftfigpresnum{Gambar\  }
+\renewcommand\cfttabpresnum{Tabel\   }
+
+\usepackage{hyperref}
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
+\setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
+
+\usepackage[center,labelfont=bf,font=bf,labelsep=space]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\usepackage[all]{nowidow}
+\usepackage{ragged2e}
+\usepackage{longtable, makecell}
+\newcolumntype{L}[1]{>{\RaggedRight}p{#1}}
+\renewcommand\theadfont{\small\bfseries}
+\setcellgapes{3pt}
+\setlength{\parskip}{0.25em}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+% -----------------------------------------------------------------
+% Custom source code style
+% -----------------------------------------------------------------
+\usepackage{listings}
+\usepackage[newfloat,chapter]{minted}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Tabel Kode}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,minted,skins,breakable}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\newtcblisting{ignasicblock}[1][]{%
+  breakable,
+  colback=white,
+  colframe=black,
+  colbacktitle=white,
+  sharp corners,
+  enhanced,
+  listing engine=minted,
+  listing only,
+  left=10mm,
+  title=Source Code,
+  halign title=center,
+  overlay={\draw[line width=.5mm] ([xshift=8mm]frame.south west)
+    -- ([xshift=8mm]frame.north west);
+    \node[right] at (title.west) {No};},
+  minted style=colorful,
+  minted language=Python,
+  minted options={%
+    linenos=true,
+    fontsize=\footnotesize,
+    numbersep=6mm,
+    texcl=true,
+    breaklines=true,
+    autogobble=true},
+  coltitle=black,
+  #1
+}
+
+\newcommand{\drawbrace}[5][]{%
+  \draw [decorate,decoration={brace,amplitude=5pt},blue!75!black,line width=1pt]
+    ([xshift=#2,yshift=-3.3mm-#3*12pt]interior.north west)
+    -- ([xshift=#2,yshift=-2.7mm-#4*12pt]interior.north west)
+    node [align=center,right=10pt,midway,circle,draw=blue!50,fill=blue!5,text=black,
+      font=\sffamily\small,#1] {#5};
+}
+
+\newcommand{\drawline}[5][]{%
+  \draw [blue!75!black,line width=1pt]
+    ([xshift=#2,yshift=-3mm+6pt-#4*12pt]interior.north west)
+    -- ([xshift=#3,yshift=-3mm+6pt-#4*12pt]interior.north west)
+    node [align=center,right=5pt,circle,draw=blue!50,fill=blue!5,text=black,
+      font=\sffamily\small,#1] {#5};
+}
+
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
+% -----------------------------------------------------------------
+% Font style
+% Ganti path sesuai lokasi font di komputer Anda
+% -----------------------------------------------------------------
+\usepackage{fontspec}
+
+\setmainfont[Path=/Users/GANTI-DENGAN-USERNAME/Library/Fonts/,
+    BoldItalicFont=Calibriz.ttf,
+    BoldFont      =Calibrib.ttf,
+    ItalicFont    =Calibrii.ttf]{Calibri.ttf}
+
+\setmonofont[Path=/System/Library/Fonts/Supplemental/,
+    BoldItalicFont=Courier New Bold Italic.ttf,
+    BoldFont      =Courier New Bold.ttf,
+    ItalicFont    =Courier New Italic.ttf]{Courier New.ttf}
+
+% -----------------------------------------------------------------
+% Bibliography style
+% -----------------------------------------------------------------
+\input{hangilastyle}
+\addbibresource{daftar-pustaka.bib}
+
+\renewcommand*{\finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\&\space}
+
+\newcommand{\cmmnt}[1]{\ignorespaces}
+
+% -----------------------------------------------------------------
+% Fill your data here (ISI DATA ANDA DI SINI)
+% -----------------------------------------------------------------
+\titleskripsi{Judul Skripsi Anda Di Sini}
+\fullname{Nama Lengkap Anda}
+\idnum{NIM Anda}
+\approvaldate{Tanggal Persetujuan}
+\degree{Sarjana Komputer}
+\yearsubmit{2025}
+\dept{TEKNIK INFORMATIKA}
+\faculty{FAKULTAS ILMU KOMPUTER}
+\university{universitas brawijaya}
+\city{malang}
+% Data dosen pembimbing
+\firstsupervisor{Nama Dosen Pembimbing I, S.T., M.T., Ph.D}
+\firstsupervisornip{NIP: XXXXXXXXXXXXXXXX}
+\secondsupervisor{Nama Dosen Pembimbing II, S.T., M.T., Ph.D}
+\secondsupervisornip{NIP: XXXXXXXXXXXXXXXX}
+
+% -----------------------------------------------------------------
+% And so it begins
+% -----------------------------------------------------------------
+\begin{document}
+
+% -----------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------
+\cover
+
+% -----------------------------------------------------------------
+% Approval Page
+% -----------------------------------------------------------------
+%\preapprovalpage
+\approvalpage
+
+%-----------------------------------------------------------------
+% PERNYATAAN ORISINALITAS
+%-----------------------------------------------------------------
+{\orisinalitas
+
+  Saya menyatakan dengan sebenar-benarnya bahwa sepanjang pengetahuan
+  saya, di dalam naskah skripsi ini tidak terdapat karya ilmiah yang
+  pernah diajukan oleh orang lain untuk memperoleh gelar akademik di
+  suatu perguruan tinggi, dan tidak terdapat karya atau pendapat yang
+  pernah ditulis atau diterbitkan oleh orang lain, kecuali yang secara
+  tertulis disitasi dalam naskah ini dan disebutkan dalam daftar
+  referensi.
+
+  Apabila ternyata didalam naskah skripsi ini dapat dibuktikan
+  terdapat unsur-unsur plagiasi, saya bersedia skripsi ini digugurkan
+  dan gelar akademik yang telah saya peroleh (sarjana) dibatalkan,
+  serta diproses sesuai dengan peraturan perundang-undangan yang
+  berlaku (UU No. 20 Tahun 2003, Pasal 25 ayat 2 dan Pasal 70).
+  \vspace{1.5cm}
+
+  \noindent
+  \hspace*{8cm}Malang, Tanggal Bulan Tahun   \vspace{2.5cm}   \\
+
+  \hspace*{7cm}\underline{Nama Lengkap Anda} \\
+  \hspace*{8cm}NIM : NIM Anda
+}
+
+%-----------------------------------------------------------------
+% PRAKATA
+%-----------------------------------------------------------------
+{\preface
+
+  Puji syukur kehadirat Allah SWT yang telah melimpahkan rahmat,
+  taufik dan hidayah-Nya sehingga skripsi yang berjudul ``\textit{Judul
+  Skripsi Anda}'' ini dapat terselesaikan. Dengan selesainya penulisan
+  skripsi ini, penulis ingin menyampaikan terima kasih kepada:
+
+  \begin{singlespace}
+    \begin{enumerate}
+    \item{Allah SWT yang telah memberikan nikmat kesehatan, kekuatan dan
+        kemudahan sehingga penulis dapat menyelesaikan skripsi ini.}
+    \item{Orang tua dan seluruh keluarga besar penulis yang senantiasa
+        mendoakan dan mendukung demi terselesaikannya skripsi ini.}
+    \item{Bapak/Ibu Nama Dosen Pembimbing I, selaku Dosen Pembimbing I
+        yang telah meluangkan waktu untuk membimbing dengan semangat dan
+        sabar sehingga penulis dapat menyelesaikan skripsi ini.}
+    \item{Bapak/Ibu Nama Dosen Pembimbing II, selaku Dosen Pembimbing II
+        yang telah mengarahkan dan membimbing penulis dengan semangat dan
+        sabar sehingga penulis dapat menyelesaikan skripsi ini.}
+    \item{Seluruh civitas akademika Teknik Informatika Universitas
+        Brawijaya yang telah banyak memberi bantuan dan dukungan selama
+        penyelesaian skripsi ini.}
+    \end{enumerate}
+  \end{singlespace}
+
+  Penulis menyadari bahwa dalam penelitian ini masih banyak
+  kekurangan. Oleh karena itu, saran dan kritik yang membangun sangat
+  penulis harapkan. Akhir kata penulis berharap penelitian ini dapat
+  membawa manfaat bagi semua pihak yang menggunakannya.
+
+  \vspace{0.8cm}
+
+  \noindent
+  \hspace*{8cm}Malang, Tanggal Bulan Tahun  \vspace{1.5cm} \\
+
+  \hspace*{6.8cm}Penulis \\
+  \hspace*{8cm}email@student.ub.ac.id
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK INDONESIA
+% -----------------------------------------------------------------
+{\abstractind
+
+  \noindent
+  Tulis abstrak bahasa Indonesia di sini. Abstrak berisi ringkasan
+  singkat dari keseluruhan penelitian, mencakup latar belakang, tujuan,
+  metode, hasil, dan kesimpulan. Panjang abstrak biasanya 150--250 kata.\\
+
+  \noindent
+  \textbf{Kata Kunci}: \emph{kata kunci pertama},
+  \emph{kata kunci kedua}, \emph{kata kunci ketiga}
+
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK ENGLISH
+% -----------------------------------------------------------------
+{\abstracteng
+
+  \noindent
+  Write your English abstract here. The abstract should contain a brief
+  summary of the entire research, including the background, objectives,
+  methods, results, and conclusions. Abstract length is typically
+  150--250 words.\\
+
+  \noindent
+  \textbf{Keywords}: \emph{first keyword},
+  \emph{second keyword}, \emph{third keyword}
+
+}
+
+% -----------------------------------------------------------------
+% TOCS
+% -----------------------------------------------------------------
+\tableofcontents
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\listoftables
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\listoffigures
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+\addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
+
+% -----------------------------------------------------------------
+% Chapter
+% -----------------------------------------------------------------
+\selectlanguage{bahasa}\clearpage\pagenumbering{arabic}\setcounter{page}{1}
+
+\include{bab1}
+\include{bab2}
+\include{bab3}
+% \include{bab4}
+% \include{bab5}
+% \include{bab6}
+% \include{bab7}
+
+% -----------------------------------------------------------------
+% Bibliography
+% -----------------------------------------------------------------
+\printbibliography[title={DAFTAR PUSTAKA}]
+
+\end{document}
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: "skripsi"
+%%% TeX-command-extra-options: "-shell-escape"
+%%% ispell-local-dictionary: "id"
+%%% End:
