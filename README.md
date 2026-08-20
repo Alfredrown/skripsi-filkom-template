@@ -1,4 +1,4 @@
-# Template Skripsi FILKOM UB
+# Unofficial Template Skripsi FILKOM UB
 
 Template LaTeX skripsi Fakultas Ilmu Komputer, Universitas Brawijaya.  
 Menggunakan referencing style **Harvard Anglia** dengan XeLaTeX.
@@ -12,6 +12,7 @@ Menggunakan referencing style **Harvard Anglia** dengan XeLaTeX.
 ## notice
 
 read accordingly that the template was made with AI THERE might be some error but i expect you guys to know this and fix it by yourself, thanks.
+origin, https://github.com/filkomers/skripsi-filkom
 ### Install MacTeX (macOS)
 
 ```bash
