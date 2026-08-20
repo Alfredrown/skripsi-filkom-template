@@ -117,6 +117,30 @@ Atau tekan **Ctrl+Alt+B** di VS Code dengan LaTeX Workshop.
 }
 ```
 
+## Perbaikan & Penyesuaian (Improvements & Fixes)
+
+Berikut adalah daftar perbaikan dan penyesuaian yang telah diterapkan pada template ini:
+
+### 1. Format Referensi & Sitasi (Harvard Anglia Style)
+- **Bahasa Indonesia pada Sitasi Website (`@online`)**:
+  - Teks URL dan tanggal diakses menggunakan format Bahasa Indonesia: `Tersedia pada: https://... [Diakses 20 Agustus 2026]`.
+  - Nama bulan diakses otomatis dikonversi ke Bahasa Indonesia (misal: *Januari, Maret, Agustus*).
+- **Aturan *et al.***:
+  - Dikonfigurasi (`maxcitenames=2, mincitenames=1`) sehingga penelitian dengan **3 penulis atau lebih** otomatis menampilkan *et al.* (misal: *Kumar et al., 2020*), sedangkan 1–2 penulis tetap menampilkan nama lengkap.
+- **Kata Penghubung Penulis**:
+  - Sitasi dalam kalimat (`\textcite`) menggunakan **"dan"** untuk 2 penulis atau antar-kelompok sitasi (misal: *Smith dan Jones (2024)*, *Vargas et al. (2021) dan Ahsan et al. (2024)*).
+  - Daftar pustaka menggunakan simbol **"&"**.
+
+### 2. Layout & Perataan Teks
+- **Kepatuhan Pedoman Skripsi FILKOM UB**:
+  - **Margin**: Kiri 4 cm, Atas 3 cm, Kanan 3 cm, Bawah 3 cm.
+  - **Font**: Calibri (`16 pt` Judul Bab, `14 pt` Subbab level 2 & 3, `12 pt` Subbab level 4 & Badan Teks).
+- **Pencegahan Overfull `\hbox`**:
+  - Ditambahkan `\emergencystretch=1em` pada dokumen utama untuk fleksibilitas penataan kata otomatis (justified) agar terhindar dari warning teks keluar dari garis margin.
+
+### 3. Kompilasi & Mesin TeX
+- Konfigurasi default menggunakan engine **XeLaTeX** (`-xelatex`) agar mendukung pemanggilan font sistem (`fontspec`) seperti Calibri dan Courier New.
+
 ## Lisensi
 
 Lihat file [LICENSE](LICENSE).
