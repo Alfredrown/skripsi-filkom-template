@@ -9,6 +9,9 @@ Menggunakan referencing style **Harvard Anglia** dengan XeLaTeX.
 - **VS Code** + ekstensi [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 - Font **Calibri** dan **Courier New** terinstall di sistem
 
+## notice
+
+read accordingly that the template was made with AI THERE might be some error but i expect you guys to know this and fix it by yourself, thanks.
 ### Install MacTeX (macOS)
 
 ```bash
@@ -116,3 +119,5 @@ Atau tekan **Ctrl+Alt+B** di VS Code dengan LaTeX Workshop.
 ## Lisensi
 
 Lihat file [LICENSE](LICENSE).
+
+
